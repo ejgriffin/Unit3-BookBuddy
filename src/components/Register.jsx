@@ -8,6 +8,8 @@ export default function Register({ setToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const userObj = {
@@ -18,40 +20,41 @@ export default function Register({ setToken }) {
     };
     const nextToken = await registerUser(userObj);
     setToken(nextToken);
-    Navigate("/account");
+    navigate("/account");
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
-        First Name:{" "}
+        First Name:
         <input
           value={firstName}
           onChange={(event) => setFirstName(event.target.value)}
         />
       </label>
       <label>
-        Last Name:{" "}
+        Last Name:
         <input
           value={lastName}
           onChange={(event) => setLastName(event.target.value)}
         />
       </label>
       <label>
-        Email:{" "}
+        Email:
         <input
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
       </label>
       <label>
-        Password:{" "}
+        Password:
         <input
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
       </label>
+      <button>Register</button>
     </form>
   );
 }

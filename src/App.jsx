@@ -9,21 +9,30 @@ function App() {
   const [token, setToken] = useState(null);
 
   return (
-    <>
+    <div>
       <h1>
         <img id="logo-image" src={bookLogo} />
-        Book Buddies
+        Book Buddy
       </h1>
       <div>
         <Link to="/account">Account</Link>
       </div>
       <Routes>
         <Route path="/" element={<h2>Home Page</h2>} />
-        <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/register" element={<Register setToken={setToken} />} />
-        <Route path="/account" element={<Account setToken={setToken} />} />
+        <Route
+          path="/login"
+          element={<Login token={token} setToken={setToken} />}
+        />
+        <Route
+          path="/register"
+          element={<Register token={token} setToken={setToken} />}
+        />
+        <Route
+          path="/account"
+          element={<Account token={token} setToken={setToken} />}
+        />
       </Routes>
-    </>
+    </div>
   );
 }
 
