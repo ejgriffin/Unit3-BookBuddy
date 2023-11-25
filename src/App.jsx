@@ -3,13 +3,13 @@ import bookLogo from "./assets/books.png";
 import Register from "./components/Register";
 import Account from "./components/Account";
 import Login from "./components/Login";
-import { Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   const [token, setToken] = useState(null);
 
   return (
-    <div>
+    <BrowserRouter>
       <h1>
         <img id="logo-image" src={bookLogo} />
         Book Buddy
@@ -32,7 +32,7 @@ function App() {
           element={<Account token={token} setToken={setToken} />}
         />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 

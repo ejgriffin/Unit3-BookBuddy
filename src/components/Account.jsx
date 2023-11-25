@@ -8,6 +8,7 @@ export default function Account({ token }) {
   useEffect(() => {
     async function fetchUser() {
       try {
+        console.log(token);
         const nextUser = await getUser(token);
         setUser(nextUser);
       } catch (err) {
