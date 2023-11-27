@@ -1,4 +1,5 @@
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+
 export const registerUser = async (userObj) => {
   try {
     const rsp = await fetch(`${API_URL}/users/register`, {
@@ -51,3 +52,17 @@ export const getUser = async (token) => {
     console.error(err);
   }
 };
+
+// export const getBooks = async (books) => {
+//   try {
+//     const response = await fetch(`${API_URL}/books`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+//     const json = await rsp.json();
+//     return json;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };

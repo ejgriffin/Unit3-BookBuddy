@@ -3,7 +3,18 @@
 // Users should be able to click on an individual book to navigate to the SingleBook component and view its details.
 
 import React from "react";
+import { useState, useEffect } from "react";
 
-export default function Books() {
-  return <div>Books</div>;
+import Homepage from "./HomePage";
+import SingleBook from "./SingleBook";
+
+export default function Books({ novel }) {
+  return (
+    <div>
+      <h2>{novel?.title}</h2>
+      <h3>{novel?.author}</h3>
+      <img src={novel?.coverimage} alt={novel?.title} width="200"></img>
+      <button>Details</button>
+    </div>
+  );
 }

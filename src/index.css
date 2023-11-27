@@ -1,3 +1,23 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+h2 {
+  color: black;
+
+  font-style: italic;
+  text-decoration: underline;
+  position: relative;
+  padding-top: 3px;
+
+  margin-bottom: 2px;
+}
+
 body {
   font-family: Georgia, serif;
   background-color: #f8f8f8;
@@ -11,3 +31,14 @@ body {
 }
 
 /* Add your own custom styles here */
+
+.books-list {
+  display: grid;
+  grid-template-columns: repeat(6, 25%);
+  grid-column-gap: 4px;
+  justify-content: space-around;
+  filter: drop-shadow(1px 1px);
+  width: 70em;
+  padding-left: 3rem;
+  padding-top: 1rem;
+}
