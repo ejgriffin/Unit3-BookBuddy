@@ -40,11 +40,11 @@ function App() {
         Book Buddy
       </h1>
       <div>
+        <Link to="/register">Register</Link>
+
         <Link to="/login">Login</Link>
 
         <Link to="/account">Account</Link>
-
-        <Link to="/register">Register</Link>
       </div>
 
       <Routes>
