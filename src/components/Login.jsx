@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { loginUser } from "../API";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -13,6 +16,8 @@ export default function Login() {
     };
     const nextToken = await loginUser(userObj);
     console.log(nextToken);
+    setToken(nextToken);
+    navigate("/account");
   };
 
   return (

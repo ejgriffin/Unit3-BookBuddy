@@ -15,16 +15,14 @@ export default function Account({ token }) {
         console.log(err);
       }
     }
-
+    console.log(user);
     fetchUser();
   }, []);
 
   return token ? (
     user && (
       <div>
-        <h2>
-          {user.firstname} {user.lastname} - ({user.email})
-        </h2>
+        <h2>Welcome, {user.email}!!</h2>
       </div>
     )
   ) : (

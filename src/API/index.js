@@ -15,6 +15,7 @@ export const registerUser = async (userObj) => {
       }),
     });
     const json = await rsp.json();
+    console.log("registerUser", json);
     return json.token;
   } catch (err) {
     console.error(err);
@@ -33,6 +34,7 @@ export const loginUser = async (userObj) => {
       }),
     });
     const json = await rsp.json();
+    console.log("loginUser", json);
     return json.token;
   } catch (err) {
     console.error(err);

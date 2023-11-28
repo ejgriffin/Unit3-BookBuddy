@@ -39,13 +39,19 @@ function App() {
         Book Buddy
       </h1>
       <div>
+        <Link to="/login">Login</Link>
+
         <Link to="/account">Account</Link>
+
+        <Link to="/register">Register</Link>
       </div>
+
       <Routes>
         <Route
           path="/"
           element={<HomePage books={books} fetchBooks={fetchBooks} />}
         />
+
         <Route
           path="/login"
           element={<Login token={token} setToken={setToken} />}
@@ -56,7 +62,12 @@ function App() {
         />
         <Route
           path="/account"
-          element={<Account token={token} setToken={setToken} />}
+          element={
+            <div>
+              <Account token={token} setToken={setToken} />
+              <HomePage books={books} fetchBooks={fetchBooks} />
+            </div>
+          }
         />
       </Routes>
     </BrowserRouter>
