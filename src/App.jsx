@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Books from "./components/Books";
 import HomePage from "./components/HomePage";
+import SingleBook from "./components/SingleBook";
 
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
@@ -51,7 +52,7 @@ function App() {
           path="/"
           element={<HomePage books={books} fetchBooks={fetchBooks} />}
         />
-
+        <Route path="/books/:id" element={<SingleBook />} />
         <Route
           path="/login"
           element={<Login token={token} setToken={setToken} />}
