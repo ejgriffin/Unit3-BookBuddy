@@ -52,7 +52,10 @@ function App() {
           path="/"
           element={<HomePage books={books} fetchBooks={fetchBooks} />}
         />
-        <Route path="/books/:id" element={<SingleBook />} />
+        <Route
+          path="/books/:id"
+          element={<SingleBook fetchBooks={fetchBooks} />}
+        />
         <Route
           path="/login"
           element={<Login token={token} setToken={setToken} />}
@@ -63,12 +66,7 @@ function App() {
         />
         <Route
           path="/account"
-          element={
-            <div>
-              <Account token={token} setToken={setToken} />
-              <HomePage books={books} fetchBooks={fetchBooks} />
-            </div>
-          }
+          element={<Account token={token} setToken={setToken} />}
         />
       </Routes>
     </BrowserRouter>

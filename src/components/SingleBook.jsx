@@ -26,7 +26,7 @@ export default function SingleBook() {
         });
         const result = await response.json();
         console.log(result);
-        setDetails(result.books.id);
+        setDetails(result.book);
       } catch (error) {
         console.error(error);
       }
@@ -36,9 +36,12 @@ export default function SingleBook() {
 
   return (
     <div className="single-book">
-      <img src={details?.coverimage} alt="" width="400"></img>
-      <h1>Title: {details?.title}</h1>
-      <h2>Author: {details?.author}</h2>
+      <img src={details?.coverimage} alt={details?.title} width="400"></img>
+      <h1>
+        <span className="book-title">{details?.title}</span> by{" "}
+        <span className="author">{details?.author}</span>
+      </h1>
+
       <p>{details?.description}</p>
       <p>{details?.available}</p>
 
