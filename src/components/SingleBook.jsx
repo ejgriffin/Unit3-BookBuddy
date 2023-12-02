@@ -5,10 +5,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 import { useState, useEffect } from "react";
+import { updateBookAvailability } from "../API";
 
-export default function SingleBook() {
+export default function SingleBook({ user, token }) {
   const { id } = useParams();
-  console.log(id);
+
   const [details, setDetails] = useState(null);
   const navigate = useNavigate();
 
@@ -16,38 +17,55 @@ export default function SingleBook() {
     navigate("/");
   }
 
-  useEffect(() => {
-    async function fetchBook() {
-      try {
-        const response = await fetch(`${API_URL}/books/${id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const result = await response.json();
-        console.log(result);
-        setDetails(result.book);
-      } catch (error) {
-        console.error(error);
-      }
+  async function fetchBook() {
+    try {
+      const response = await fetch(`${API_URL}/books/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await response.json();
+      console.log(result);
+      setDetails(result.book);
+    } catch (error) {
+      console.error(error);
     }
+  }
+  useEffect(() => {
     fetchBook();
   }, []);
 
+  async function checkoutBook() {
+    try {
+      await updateBookAvailability(id, false, token);
+      await fetchBook();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
-    <div className="single-book">
-      <img src={details?.coverimage} alt={details?.title} width="400"></img>
-      <h1>
-        <span className="book-title">{details?.title}</span> by{" "}
-        <span className="author">{details?.author}</span>
-      </h1>
+    details && (
+      <div className="single-book">
+        <img src={details?.coverimage} alt={details?.title} width="400"></img>
+        <h1>
+          <span className="book-title">{details?.title}</span> by
+          <span className="author">{details?.author}</span>
+        </h1>
 
-      <p>{details?.description}</p>
-      <p>{details?.available}</p>
+        <p>{details?.description}</p>
+        {user && details?.available ? (
+          <button onClick={checkoutBook}>Checkout this Book!</button>
+        ) : user && !details?.available ? (
+          <p className="message">This book is unavailable.</p>
+        ) : (
+          <p className="message">Please log in to see avilability.</p>
+        )}
 
-      <button type="button" onClick={handleClick}>
-        Close
-      </button>
-    </div>
+        <button type="button" onClick={handleClick}>
+          Return Home
+        </button>
+      </div>
+    )
   );
 }

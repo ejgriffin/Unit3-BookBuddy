@@ -1,31 +1,38 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getUser } from "../API";
+import { removeReservation } from "../API";
+import React from "react";
 
-export default function Account({ token }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        console.log(token);
-        const nextUser = await getUser(token);
-        setUser(nextUser);
-      } catch (err) {
-        console.log(err);
-      }
+export default function Account({ user, token, fetchUser }) {
+  async function returnBook(id, token) {
+    try {
+      await removeReservation(id, token);
+      await fetchUser();
+    } catch (error) {
+      console.error(error);
     }
-    console.log(user);
-    fetchUser();
-  }, []);
-
-  return token ? (
-    user && (
-      <div>
-        <h2>Welcome, {user.email}!!</h2>
+  }
+  return user ? (
+    <div>
+      <h1>Welcome, User - {user.email}!</h1>
+      <div className="account-books-list">
+        {user.books.map((book, index) => {
+          return (
+            <div key={index}>
+              <h2 className="account-title">{book.title}</h2>
+              <img src={book.coverimage} alt={book.title} width="200"></img>
+              <button
+                className="return-button"
+                onClick={async () => {
+                  await returnBook(book.id);
+                }}
+              >
+                Return this book!
+              </button>
+            </div>
+          );
+        })}
       </div>
-    )
+    </div>
   ) : (
-    <Link to="/login">Please log in before viewing this page!</Link>
+    <p className="login-message">You must log in to view this page!</p>
   );
 }

@@ -3,10 +3,6 @@
 // Users should be able to click on an individual book to navigate to the SingleBook component and view its details.
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { useState, useEffect } from "react";
-
-import Homepage from "./HomePage";
-import SingleBook from "./SingleBook";
 
 export default function Books({ novel }) {
   const navigate = useNavigate();

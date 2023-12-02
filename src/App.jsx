@@ -4,15 +4,40 @@ import Register from "./components/Register";
 import Account from "./components/Account";
 import Login from "./components/Login";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import Books from "./components/Books";
+
 import HomePage from "./components/HomePage";
 import SingleBook from "./components/SingleBook";
+import { getUser } from "./API";
+import Navigations from "./components/Navigations";
 
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 function App() {
   const [token, setToken] = useState(null);
   const [books, setBooks] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    if (localToken !== undefined) setToken(localToken);
+  }, []);
+
+  useEffect(() => {
+    if (token !== null && token !== undefined) {
+      console.log(token);
+      async function fetchUser(token) {
+        try {
+          const nextUser = await getUser(token);
+
+          setUser(nextUser);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      fetchUser(token);
+    }
+  }, [token]);
 
   async function fetchBooks() {
     try {
@@ -39,14 +64,7 @@ function App() {
         <img id="logo-image" src={bookLogo} />
         Book Buddy
       </h1>
-      <div>
-        <Link to="/register">Register</Link>
-
-        <Link to="/login">Login</Link>
-
-        <Link to="/account">Account</Link>
-      </div>
-
+      <Navigations token={token} setToken={setToken} setUser={setUser} />
       <Routes>
         <Route
           path="/"
@@ -54,19 +72,16 @@ function App() {
         />
         <Route
           path="/books/:id"
-          element={<SingleBook fetchBooks={fetchBooks} />}
+          element={<SingleBook user={user} token={token} />}
         />
-        <Route
-          path="/login"
-          element={<Login token={token} setToken={setToken} />}
-        />
+        <Route path="/login" element={<Login setToken={setToken} />} />
         <Route
           path="/register"
           element={<Register token={token} setToken={setToken} />}
         />
         <Route
           path="/account"
-          element={<Account token={token} setToken={setToken} />}
+          element={<Account user={user} setToken={setToken} token={token} />}
         />
       </Routes>
     </BrowserRouter>

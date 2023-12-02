@@ -67,7 +67,7 @@ button:hover {
 }
 
 .details-button {
-  margin-right: 25%;
+  margin-right: 27%;
 }
 
 .single-book {
@@ -76,15 +76,52 @@ button:hover {
 }
 
 .book-title {
+  color: green;
   font-weight: bold;
   text-decoration: underline;
   font-size: larger;
 }
 
 .author {
+  color: blue;
   font-style: italic;
 }
 
 p {
   text-align: left;
+}
+
+.login-message {
+  font-weight: bold;
+  font-size: large;
+  color: red;
+  text-align: center;
+}
+
+.message {
+  font-weight: bold;
+  font-size: large;
+  color: red;
+  text-align: center;
+}
+
+.account-title {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-right: 3%;
+  margin: 0 auto;
+  padding-top: 5%;
+}
+
+.account-books-list {
+  display: grid;
+  grid-template-columns: repeat(5, 25%);
+  grid-column-gap: 2px;
+  justify-content: space-around;
+
+  width: 70em;
+  padding-left: 6rem;
+  padding-top: 2rem;
 }

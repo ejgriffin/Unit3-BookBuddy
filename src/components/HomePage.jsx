@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+
 import Books from "./Books";
 
 export default function HomePage({ books, fetchBooks }) {

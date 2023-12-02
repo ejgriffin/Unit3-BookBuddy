@@ -2,7 +2,7 @@ import { useState } from "react";
 import { loginUser } from "../API";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, token }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,8 +15,10 @@ export default function Login({ setToken }) {
       password,
     };
     const nextToken = await loginUser(userObj);
+
     console.log(nextToken);
     setToken(nextToken);
+    localStorage.setItem("token", nextToken);
     navigate("/account");
   };
 
