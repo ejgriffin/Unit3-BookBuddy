@@ -1,11 +1,11 @@
 import { removeReservation } from "../API";
 import React from "react";
 
-export default function Account({ user, token, fetchUser }) {
-  async function returnBook(bookid, token) {
+export default function Account({ user, fetchUser, token }) {
+  async function returnBook(id, token) {
     try {
-      await removeReservation(bookid, token);
-      // await fetchUser();
+      await removeReservation(id, token);
+      await fetchUser();
     } catch (error) {
       console.error(error);
     }
