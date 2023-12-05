@@ -74,9 +74,9 @@ export const updateBookAvailability = async (id, available, token) => {
   }
 };
 
-export const removeReservation = async (id, token) => {
+export const removeReservation = async (bookid, token) => {
   try {
-    const rsp = await fetch(`${API_URL}/reservations/${id}`, {
+    const rsp = await fetch(`${API_URL}/reservations/${bookid}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

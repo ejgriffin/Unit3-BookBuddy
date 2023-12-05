@@ -2,10 +2,10 @@ import { removeReservation } from "../API";
 import React from "react";
 
 export default function Account({ user, token, fetchUser }) {
-  async function returnBook(id, token) {
+  async function returnBook(bookid, token) {
     try {
-      await removeReservation(id, token);
-      await fetchUser();
+      await removeReservation(bookid, token);
+      // await fetchUser();
     } catch (error) {
       console.error(error);
     }
@@ -25,7 +25,7 @@ export default function Account({ user, token, fetchUser }) {
                   await returnBook(book.id);
                 }}
               >
-                Return this book!
+                Return Book
               </button>
             </div>
           );
