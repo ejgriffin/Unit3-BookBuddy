@@ -10,6 +10,7 @@ export default function Account({ user, token, fetchUser }) {
       console.error(error);
     }
   }
+
   return user ? (
     <div>
       <h1>Welcome, User - {user.email}!</h1>

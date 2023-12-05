@@ -9,7 +9,7 @@ export default function HomePage({ books, fetchBooks }) {
       <div className="search-bar">
         <input
           className="search"
-          placeholder="Search..."
+          placeholder="Search Book by Title..."
           onChange={(e) => setQuery(e.target.value.toLowerCase())}
         />
       </div>

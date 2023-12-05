@@ -25,12 +25,10 @@ h3 {
   margin: 0 auto;
   margin-top: 5px;
 }
-/* body {
-  font-family: Georgia, serif;
-  background-color: #f8f8f8;
+body {
   margin: 0;
   padding: 0;
-} */
+}
 
 #logo-image {
   width: 30px;
@@ -47,7 +45,7 @@ h3 {
 
   width: 70em;
   padding-left: 4rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 button {
@@ -124,4 +122,10 @@ p {
   width: 70em;
   padding-left: 6rem;
   padding-top: 2rem;
+}
+
+.search-bar {
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
 }
