@@ -5,7 +5,6 @@ export default function Account({ user, setUser, token }) {
   const [booklist, setBooklist] = useState([]);
 
   useEffect(() => {
-    console.log("running useEffect");
     if (user) {
       setBooklist(user?.books);
     }
@@ -22,8 +21,7 @@ export default function Account({ user, setUser, token }) {
       console.error(error);
     }
   }
-  console.log(user);
-  console.log(booklist);
+
   return user ? (
     <div>
       <h1>

@@ -6,4 +6,4 @@ We are working with a new client who is wanting to design an online library for 
 
 Details on the API can be found 🔗 [here](#)
 
-Link to Deployed app here: https://657f9da54f9e7f53b8fa92be--venerable-druid-b71bf1.netlify.app/
+Link to Deployed app here: https://657fa2cf66e83a55972b584b--singular-torrone-a3bd9a.netlify.app/
