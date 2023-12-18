@@ -1,6 +1,7 @@
 const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 export const registerUser = async (userObj) => {
+  console.log(userObj);
   try {
     const rsp = await fetch(`${API_URL}/users/register`, {
       method: "POST",
@@ -8,8 +9,8 @@ export const registerUser = async (userObj) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstname: userObj.firstname,
-        lastname: userObj.lastname,
+        firstname: userObj.firstName,
+        lastname: userObj.lastName,
         email: userObj.email,
         password: userObj.password,
       }),
@@ -83,7 +84,23 @@ export const removeReservation = async (id, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const json = rsp.json();
+    const json = await rsp.json();
+    return json;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getReservations = async (token) => {
+  try {
+    const rsp = await fetch(`${API_URL}/reservations`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const json = await rsp.json();
+    console.log(json);
     return json;
   } catch (err) {
     console.log(err);

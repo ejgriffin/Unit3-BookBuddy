@@ -1,21 +1,36 @@
-import { removeReservation } from "../API";
-import React from "react";
+import { useEffect, useState } from "react";
+import { removeReservation, getReservations } from "../API";
 
-export default function Account({ user, fetchUser, token }) {
+export default function Account({ user, setUser, token }) {
+  const [booklist, setBooklist] = useState([]);
+
+  useEffect(() => {
+    console.log("running useEffect");
+    if (user) {
+      setBooklist(user?.books);
+    }
+  }, [user]);
+
   async function returnBook(id, token) {
+    console.log("token", token);
     try {
       await removeReservation(id, token);
-      await fetchUser();
+      const newList = await getReservations(token);
+      console.log(newList);
+      setBooklist(newList.reservation);
     } catch (error) {
       console.error(error);
     }
   }
-
+  console.log(user);
+  console.log(booklist);
   return user ? (
     <div>
-      <h1>Welcome, User - {user.email}!</h1>
+      <h1>
+        Welcome, {user.firstname} {user.lastname} - {user.email}!
+      </h1>
       <div className="account-books-list">
-        {user.books.map((book, index) => {
+        {booklist.map((book, index) => {
           return (
             <div key={index}>
               <h2 className="account-title">{book.title}</h2>
@@ -23,7 +38,7 @@ export default function Account({ user, fetchUser, token }) {
               <button
                 className="return-button"
                 onClick={async () => {
-                  await returnBook(book.id);
+                  await returnBook(book.id, token);
                 }}
               >
                 Return Book

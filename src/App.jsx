@@ -81,7 +81,14 @@ function App() {
         />
         <Route
           path="/account"
-          element={<Account user={user} setToken={setToken} token={token} />}
+          element={
+            <Account
+              user={user}
+              setUser={setUser}
+              setToken={setToken}
+              token={token}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>
